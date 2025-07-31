@@ -1,6 +1,10 @@
 from kafka import KafkaProducer
 from googleapiclient.discovery import build
 import json
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Setup Kafka producer
 producer = KafkaProducer(
@@ -9,7 +13,7 @@ producer = KafkaProducer(
 )
 
 # Setup YouTube API
-api_key = 'AIzaSyACQ4Yvx7NrwyGnY3U0w_k8-WwW79us0fg'
+api_key= os.getenv('YOUTUBE_API')
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 def fetch_youtube_comments(query):
